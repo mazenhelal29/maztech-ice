@@ -37,12 +37,15 @@ export function Sidebar() {
     }
   }
 
+  // Helper to determine if we should show labels/expanded state
+  const isExpanded = sidebarOpen || window.innerWidth > 768
+
   return (
     <aside className={`sidebar ${sidebarOpen ? 'sidebar--open' : 'sidebar--collapsed'}`}>
       <div className="sidebar__header">
         <div className="sidebar__logo">
           <IceCream size={28} className="sidebar__logo-icon" />
-          {sidebarOpen && <span className="sidebar__logo-text">مصنع آيس كريم</span>}
+          {isExpanded && <span className="sidebar__logo-text">مصنع آيس كريم</span>}
         </div>
         <button className="sidebar__toggle" onClick={toggleSidebar}>
           <ChevronRight size={18} className={sidebarOpen ? '' : 'rotate-180'} />
@@ -60,13 +63,13 @@ export function Sidebar() {
             }
           >
             <Icon size={20} className="sidebar__item-icon" />
-            {sidebarOpen && <span className="sidebar__item-label">{label}</span>}
+            {isExpanded && <span className="sidebar__item-label">{label}</span>}
           </NavLink>
         ))}
       </nav>
 
       <div className="sidebar__footer">
-        {sidebarOpen && (
+        {isExpanded && (
           <div className="sidebar__user">
             <div className="sidebar__user-avatar">{profile?.name?.[0] || 'م'}</div>
             <div className="sidebar__user-info">
@@ -76,7 +79,7 @@ export function Sidebar() {
         )}
         <button className="sidebar__logout" onClick={handleLogout} title="تسجيل الخروج">
           <LogOut size={18} />
-          {sidebarOpen && <span>خروج</span>}
+          {isExpanded && <span>خروج</span>}
         </button>
       </div>
     </aside>
