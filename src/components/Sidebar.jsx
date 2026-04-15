@@ -23,12 +23,18 @@ const navItems = [
 
 export function Sidebar() {
   const { profile, logout } = useAuthStore()
-  const { sidebarOpen, toggleSidebar } = useAppStore()
+  const { sidebarOpen, toggleSidebar, setSidebarOpen } = useAppStore()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
     await logout()
     navigate('/login')
+  }
+
+  const handleLinkClick = () => {
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false)
+    }
   }
 
   return (
@@ -48,6 +54,7 @@ export function Sidebar() {
           <NavLink
             key={to}
             to={to}
+            onClick={handleLinkClick}
             className={({ isActive }) =>
               `sidebar__item ${isActive ? 'sidebar__item--active' : ''}`
             }

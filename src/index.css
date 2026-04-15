@@ -68,6 +68,11 @@ body {
 .sidebar-open .main-content   { margin-right: var(--sidebar-w); }
 .sidebar-collapsed .main-content { margin-right: var(--sidebar-collapsed-w); }
 
+@media (max-width: 768px) {
+  .sidebar-open .main-content,
+  .sidebar-collapsed .main-content { margin-right: 0; }
+}
+
 /* ============ SIDEBAR ============ */
 .sidebar {
   position: fixed;
@@ -871,9 +876,16 @@ textarea.form-input { resize: vertical; min-height: 80px; }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 768px) {
-  .sidebar { display: none; }
-  .main-content { margin-right: 0 !important; }
+  .sidebar { 
+    right: -100%; 
+    width: 280px !important; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+  .sidebar--open { right: 0; }
+  
+  .main-content { margin-right: 0 !important; padding-top: 60px; }
   .page { padding: 16px; }
+  
   .stats-grid, .stats-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .dashboard-grid, .reports-grid { grid-template-columns: 1fr; }
   .sale-item-row { grid-template-columns: 1fr 70px; }
@@ -884,4 +896,41 @@ textarea.form-input { resize: vertical; min-height: 80px; }
   .stats-grid, .stats-grid--4 { grid-template-columns: 1fr; }
   .products-grid, .customers-grid, .recipe-grid { grid-template-columns: 1fr; }
   .page-header { flex-direction: column; }
+}
+
+/* ============ MOBILE COMPONENTS ============ */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg-800);
+  border-bottom: 1px solid var(--bg-600);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 90;
+}
+
+@media (max-width: 768px) {
+  .mobile-header { display: flex; }
+}
+
+.mobile-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  z-index: 95;
+  animation: fadeIn 0.15s ease;
 }

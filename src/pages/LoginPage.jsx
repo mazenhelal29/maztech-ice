@@ -36,8 +36,8 @@ export function LoginPage() {
             <IceCream size={40} />
           </div>
         </div>
-        <h1 className="login-card__title">مصنع آيس كريم</h1>
-        <p className="login-card__subtitle">نظام إدارة المصنع المتكامل</p>
+        <h1 className="login-card__title">مصنع الحلويات</h1>
+        <p className="login-card__subtitle">نظام إدارة المصنع المتكامل مع Maz-Tech</p>
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="form-group">
